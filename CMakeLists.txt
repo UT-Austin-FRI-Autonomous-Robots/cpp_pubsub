@@ -39,11 +39,13 @@ ament_target_dependencies(listener rclcpp std_msgs)
 #---Added for Talker/Listener - Sphere---
 add_executable(talker_sphere src/talker_sphere.cpp)
 ament_target_dependencies(talker_sphere rclcpp std_msgs)
-rosidl_target_interfaces(talker_sphere ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(talker_sphere "${cpp_typesupport_target}")
 
 add_executable(listener_sphere src/listener_sphere.cpp)
 ament_target_dependencies(listener_sphere rclcpp std_msgs)
-rosidl_target_interfaces(listener_sphere ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(listener_sphere "${cpp_typesupport_target}")
 
 # add_executable(listener src/listener.cpp)
 # ament_target_dependencies(listener rclcpp std_msgs)
