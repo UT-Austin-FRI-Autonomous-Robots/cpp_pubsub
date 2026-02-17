@@ -16,8 +16,8 @@ public:
   MinimalPublisherSphere()
   : Node("minimal_publisher_sphere")
   {
-    publisher_ = this->create_publisher<cpp_pubsub::msg::Sphere>("spheres", 10);
-    timer_ = this->create_wall_timer(500ms, std::bind(&MinimalPublisherSphere::on_timer, this));
+    publisher_ = create_publisher<cpp_pubsub::msg::Sphere>("spheres", 10);
+    timer_ = create_wall_timer(500ms, std::bind(&MinimalPublisherSphere::on_timer, this));
   }
 
 private:

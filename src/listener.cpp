@@ -14,7 +14,7 @@ public:
   MinimalSubscriber()
   : Node("minimal_subscriber")
   {
-    subscription_ = this->create_subscription<std_msgs::msg::String>(
+    subscription_ = create_subscription<std_msgs::msg::String>(
       "topic", 10,
       std::bind(&MinimalSubscriber::topic_callback, this, std::placeholders::_1)
     );
@@ -26,7 +26,7 @@ public:
 private:
   void topic_callback(std_msgs::msg::String::UniquePtr msg)
   {
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+    RCLCPP_INFO_STREAM(this->get_logger(), "I heard: " << msg->data);
   }
 
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
